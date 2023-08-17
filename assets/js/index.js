@@ -70,14 +70,18 @@ const propiedadesJSON = [
         ({rooms, m}) => rooms >= cuartos && m >= metrosMin && m <= metrosMax
       );
       fillPropiedades(propiedades);
-    }
-  )
+    });
 
   const fillPropiedades = (propiedades = propiedadesJSON) => {
     clearPropiedades();
     totalspan.innerHTML = propiedades.length;
-    propiedades.forEach((propiedades) => {
+    propiedades.forEach((propiedad) => {
       const propiedadesTemplate =  prepareTemplatePropiedad(propiedades);
       propiedadesSection.innerHTML += propiedadesTemplate;
     })
-  }
+  };
+
+  // const propiedadesTemplate =({
+
+  // })
+  // return ""
