@@ -49,7 +49,7 @@ const propiedadesJSON = [
     }
   ];
   
-  const inputs = Array.from(document.querySelector ("nav"));
+  const inputs = Array.from(document.querySelectorAll("nav input"));
   const btn = document.querySelector("nav button");
   const propiedadesSection = document.querySelector(".propiedades");
   const totalspan = document.querySelector("#Propiedades Span");
@@ -61,7 +61,7 @@ const propiedadesJSON = [
         {value : metrosMax },
 
       ] =inputs;
-      if (inputs.filter(({value}) => !value).length) {
+      if (inputs.filter(({value}) => !value.trim()).length) {
         alert("faltan datos")
         return false;
 
@@ -75,13 +75,30 @@ const propiedadesJSON = [
   const fillPropiedades = (propiedades = propiedadesJSON) => {
     clearPropiedades();
     totalspan.innerHTML = propiedades.length;
-    propiedades.forEach((propiedad) => {
-      const propiedadesTemplate =  prepareTemplatePropiedad(propiedades);
+    
+    propiedades.forEach(propiedad => {
+      const propiedadesTemplate =  propiedadesTemplate(propiedad);
       propiedadesSection.innerHTML += propiedadesTemplate;
     })
   };
 
-  // const propiedadesTemplate =({
+  const propiedadesTemplate =(propiedad) =>{
+    return `
+      <div class="propiedad">
+        <div class="img" style="background-image: url('${propiedad.src}')"></div>
+        <section>
+          <h5>${propiedad.name}</h5>
+          <div>
+            <p>Cuartos: ${propiedad.rooms}</p>
+            <p>Metros ${propiedad.m}</p>
+          </div>
+          <p class="my-3>'${propiedad.description}'</p>
+          <button class="btn btn-info">ver mas</button>
+        </section>
+      </div>
+    `;
+  };
 
-  // })
-  // return ""
+  const clearPropiedades = () => {
+    propiedadesSection.innerHTML = "";
+  };
