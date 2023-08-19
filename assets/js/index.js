@@ -52,7 +52,7 @@ const propiedadesJSON = [
   const inputs = Array.from(document.querySelectorAll("nav input"));
   const btn = document.querySelector("nav button");
   const propiedadesSection = document.querySelector(".propiedades");
-  const totalspan = document.querySelector("#Propiedades Span");
+  const totalspan = document.querySelector("#Propiedades span");
 
   btn.addEventListener("click", () => {
       const [
@@ -77,26 +77,27 @@ const propiedadesJSON = [
     totalspan.innerHTML = propiedades.length;
     
     propiedades.forEach(propiedad => {
-      const propiedadesTemplate =  propiedadesTemplate(propiedad);
-      propiedadesSection.innerHTML += propiedadesTemplate;
+      const template = propiedadtemplate(propiedad);
+      propiedadesSection.innerHTML += template;
     })
   };
 
-  const propiedadesTemplate =(propiedad) =>{
+  const propiedadtemplate =(propiedad) =>{
     return `
-      <div class="propiedad">
-        <div class="img" style="background-image: url('${propiedad.src}')"></div>
-        <section>
-          <h5>${propiedad.name}</h5>
-          <div>
-            <p>Cuartos: ${propiedad.rooms}</p>
-            <p>Metros ${propiedad.m}</p>
-          </div>
-          <p class="my-3>'${propiedad.description}'</p>
-          <button class="btn btn-info">ver mas</button>
-        </section>
-      </div>
-    `;
+    <div class="propiedad">
+      <div class="img" style="background-image: url('${propiedad.src}')"></div>
+      <section>
+        <h5>${propiedad.name}</h5>
+        <div>
+          <p>Cuartos: ${propiedad.rooms}</p>
+          <p>Metros: ${propiedad.m}</p>
+        </div>
+        <p class="my-3">${propiedad.description}</p>
+        <button class="btn btn-info">Ver más</button>
+      </section>
+    </div>
+  `;
+
   };
 
   const clearPropiedades = () => {
